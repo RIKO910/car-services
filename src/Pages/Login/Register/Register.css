@@ -1,0 +1,22 @@
+.containerRegister{
+    background-color: lightblue;
+    margin-left: 30rem;
+    margin-top: 50px;
+    height: 19rem;
+    width: 24rem;
+    border: 2px solid gray;
+    border-radius: 15px;
+}
+.form{
+    margin-top: 20px;
+}
+.form input{
+    margin-top: 10px;
+    height: 40px;
+    width: 23rem;
+    border-radius: 15px ;
+    border: lightblue;
+}
+.submit{
+    width: 5px;
+}
