@@ -12,6 +12,8 @@ import ServiceDetail from './Pages/ServiceDetail/ServiceDetail';
 import NotFound from './Pages/Shared/Header/NotFound/NotFound';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
+import CheckOut from './Pages/CheckOut/CheckOut/CheckOut';
+import RequireAuth from './Pages/Login/Login/RequireAuth/RequireAuth';
 
 function App() {
   return (
@@ -25,6 +27,11 @@ function App() {
         <Route path='/expert' element={<Exparts></Exparts>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register'element={<Register></Register>}></Route>
+        <Route path='/checkout' element={
+          <RequireAuth>
+            <CheckOut></CheckOut>
+          </RequireAuth>
+        }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
