@@ -10,7 +10,7 @@
 .form{
     margin-top: 20px;
 }
-.form input{
+.form input:not([type=checkbox]){
     margin-top: 10px;
     height: 40px;
     width: 23rem;

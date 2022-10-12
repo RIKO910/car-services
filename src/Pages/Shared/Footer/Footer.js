@@ -4,7 +4,7 @@ import logo from '../../../images/logo.png'
 const Footer = () => {
     return (
         <div className='mt-5'>
-          <CDBFooter  className="shadow ">
+          <CDBFooter  className="shadow bg-primary ">
       <CDBBox display="flex" flex="column" className="mx-auto py-5" style={{ width: '90%' }}>
         <CDBBox display="flex" justifyContent="between" className="flex-wrap">
           <CDBBox>

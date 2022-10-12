@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -14,14 +14,25 @@ const Login = () => {
     const location=useLocation();
 
     let from = location.state?.from?.pathname || "/";
+
+    let errorElement
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-
-   
+    if (user) {
+        navigate(from, { replace: true });
+    }
+    if (error) {
+       
+        errorElement=   <div>
+             <p className='text-danger'>Error: {error.message}</p>
+           </div>
+         
+       }
+    
     const handleSubmit = event => {
         // `current` points to the mounted text input element
         event.preventDefault()
@@ -29,15 +40,18 @@ const Login = () => {
         const password = passwordRef.current.value;
         console.log(email, password)
         signInWithEmailAndPassword(email, password)
-        if (user) {
-            navigate(from, { replace: true });
-        }
-        else
-            alert('password is wrong !! please register again')
+      
+        
             
     };
-
-
+    const [sendPasswordResetEmail, sending,] = useSendPasswordResetEmail(
+        auth
+      );
+    const resetPassword = async () =>{
+        const email = emailRef.current.value;
+        await sendPasswordResetEmail(email);
+          alert('Sent email');
+    }
     const navigateRegister = event => {
         navigate('/register');
     }
@@ -57,15 +71,14 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+                
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
             </Form>
-
+            {errorElement}
             <p>New to Car Service <span role="button" className='text-danger' onClick={navigateRegister}>Please Register</span></p>
+            <p>Forget Password ? <span role="button" className='text-danger'  onClick={resetPassword}>Reset Password</span></p>
             <SocialLogin></SocialLogin>
         </div>
     );

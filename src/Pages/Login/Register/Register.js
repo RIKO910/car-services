@@ -44,7 +44,10 @@ const handleRegister =event =>{
                 <br />
                 <input ref={passwordRef} type="password" name='password' id='' placeholder='password' required/>
                 <br />
-                <input className='submit' type="submit" value="Register" />
+                <input type="checkbox" name="terms" id="terms" />
+                <label htmlFor="terms">Accept Terms and Conditions</label>
+                <br />
+                <input className='submit w-50 mx-auto btn btn-primary' type="submit" value="Register" />
             </form>
             
             <p>Already have an account <span role="button" onClick={navigateLogin} className='text-danger'>Please Login</span></p>
