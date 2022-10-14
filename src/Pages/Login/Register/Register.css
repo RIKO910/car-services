@@ -1,4 +1,4 @@
-.containerRegister{
+/* .containerRegister{
     background-color: lightblue;
     margin-left: 30rem;
     margin-top: 50px;
@@ -38,4 +38,10 @@
           display: grid;
           grid-template-columns: repeat(2,1fr);
       } 
-  }
+  } */
+  .okk{
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin-top: 40px;
+    background-color: lightblue;
+}

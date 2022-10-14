@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 import './Login.css'
@@ -55,7 +56,10 @@ const Login = () => {
     const navigateRegister = event => {
         navigate('/register');
     }
-
+    
+    if(loading){
+        return <Loading></Loading>
+    }
     return (
         <div className='container okk w-50'>
             <h2>please login</h2>
